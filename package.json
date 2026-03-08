@@ -28,6 +28,7 @@
     "react-router-dom": "^7.13.1",
     "tone": "^15.1.22",
     "tweetnacl": "^1.0.3",
+    "vite-plugin-node-polyfills": "^0.25.0",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
