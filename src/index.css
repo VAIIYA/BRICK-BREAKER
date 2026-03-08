@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap');
 
 @theme {
   --font-press-start: "Press Start 2P", system-ui;
@@ -12,74 +11,82 @@
   --color-arcade-bg: #050714;
 }
 
-@layer base {
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Orbitron:wght@400;700&display=swap');
 
-  html,
-  body,
-  #root {
-    @apply h-full w-full overflow-hidden bg-arcade-bg text-gray-100;
-    font-family: var(--font-orbitron);
-    margin: 0;
-    padding: 0;
-  }
-
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  .arcade-font {
-    font-family: var(--font-press-start);
-  }
-
-  ::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--color-arcade-bg);
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: rgba(0, 255, 255, 0.2);
-    border-radius: 9999px;
-  }
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background-color: var(--color-arcade-bg, #050714);
+  color: #f3f4f6;
+  font-family: var(--font-orbitron);
+  margin: 0;
+  padding: 0;
 }
 
-@layer components {
-  .neon-border {
-    border: 2px solid var(--color-neon-cyan);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
-  }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.arcade-font {
+  font-family: var(--font-press-start);
+}
 
-  .neon-text {
-    color: var(--color-neon-cyan);
-    filter: drop-shadow(0 0 8px rgba(0, 255, 255, 0.6));
-  }
+.btn-arcade {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--color-neon-cyan);
+  color: var(--color-neon-cyan);
+  font-family: var(--font-press-start);
+  font-size: 0.75rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  background: transparent;
+  cursor: pointer;
+}
 
-  .btn-arcade {
-    @apply relative px-6 py-3 border-2 border-neon-cyan text-neon-cyan arcade-font text-xs transition-all duration-300 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
-  }
+.btn-arcade:hover:not(:disabled) {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
+}
 
-  .btn-arcade:hover {
-    background: rgba(0, 255, 255, 0.1);
-    box-shadow: 0 0 15px rgba(0, 255, 255, 0.6);
-  }
+.btn-arcade:active:not(:disabled) {
+  transform: scale(0.95);
+}
 
-  .scanline {
-    @apply pointer-events-none fixed inset-0 z-50;
-    background: linear-gradient(rgba(18, 16, 16, 0) 50%,
-        rgba(0, 0, 0, 0.1) 50%),
-      linear-gradient(90deg,
-        rgba(255, 0, 0, 0.03),
-        rgba(0, 255, 0, 0.01),
-        rgba(0, 0, 255, 0.03));
-    background-size: 100% 4px, 3px 100%;
-  }
+.btn-arcade:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 
-  .crt-glow {
-    @apply pointer-events-none fixed inset-0 z-40;
-    background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
-  }
+.neon-border {
+  border: 2px solid var(--color-neon-cyan);
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+}
+
+.scanline {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%,
+      rgba(0, 0, 0, 0.1) 50%),
+    linear-gradient(90deg,
+      rgba(255, 0, 0, 0.03),
+      rgba(0, 255, 0, 0.01),
+      rgba(0, 0, 255, 0.03));
+  background-size: 100% 4px, 3px 100%;
+}
+
+.crt-glow {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.2) 100%);
 }
