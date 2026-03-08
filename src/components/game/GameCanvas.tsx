@@ -4,16 +4,18 @@ import { useGameEngine } from '../../hooks/useGameEngine';
 import PauseMenu from './PauseMenu';
 import { useGameStore } from '../../store/gameStore';
 import { motion, AnimatePresence } from 'framer-motion';
+import HUD from './HUD';
 
 const GameCanvas: React.FC = () => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const { gameState } = useGameStore();
 
     // The hook handles the entire loop and rendering to the canvasRef
-    useGameEngine(canvasRef);
+    const { activeEffects } = useGameEngine(canvasRef);
 
     return (
         <div className="relative group">
+            <HUD activeEffects={activeEffects} />
             <div className="relative neon-border bg-black shadow-[0_0_50_rgba(0,0,0,0.8)] overflow-hidden">
                 <canvas
                     ref={canvasRef}
